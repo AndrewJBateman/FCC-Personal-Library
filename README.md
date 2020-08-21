@@ -1,7 +1,7 @@
 # :zap: Nodejs Information Security and Quality Assurance
 
 * Node.js app to store and access book data as json objects in a MongoDB database
-* Part of a FreeCodeCamp exercise for Front End Certification (since removed from the curriculum).
+* Part of a FreeCodeCamp exercise for Front End Certification.
 
 *** Note: to open web links in a new window use: _ctrl+click on link_**
 
@@ -30,7 +30,7 @@
 4) You will add any security features to `server.js`
 5) You will create all of the functional tests in `tests/2_functional-tests.js`
 
-* MongoDB Cloud Atlas database set up using google cloud.
+* MongoDB Cloud Atlas database set up to use Google Cloud Storage.
 
 ## :camera: Screenshots
 
@@ -56,47 +56,47 @@
 
 ## :computer: Code Examples
 
-* extract from `routes/api.js` showing routes to find a book object in the database using its id, post a comment to or delete the entire book json object using its id.
+* extract from `routes/api.js` showing routes to find a json book object in the database using its id, post a comment or delete the entire book object using its id.
 
 ```javascript
-	app
-		.route('/api/books/:id')
-		.get((req, res) => {
-			const bookid = req.params.id;
+app
+	.route('/api/books/:id')
+	.get((req, res) => {
+		const bookid = req.params.id;
 
-			if (!bookid) return res.send('no book exists');
+		if (!bookid) return res.send('no book exists');
 
-			Book.findById(bookid, (err, book) => {
-				return err || !book ? res.send('no book exists') : res.json(book);
-			});
-		})
+		Book.findById(bookid, (err, book) => {
+			return err || !book ? res.send('no book exists') : res.json(book);
+		});
+	})
 
-		.post((req, res) => {
-			const bookid = req.params.id;
-			const { comment } = req.body;
+	.post((req, res) => {
+		const bookid = req.params.id;
+		const { comment } = req.body;
 
-			Book.findById(bookid, (err, book) => {
-				if (err || !book) return res.send('no book exists');
+		Book.findById(bookid, (err, book) => {
+			if (err || !book) return res.send('no book exists');
 
-				if (comment) {
-					book.comments.push(comment);
-					book.commentcount++;
-				}
+			if (comment) {
+				book.comments.push(comment);
+				book.commentcount++;
+			}
 
-				book.save((err) => {
-					return err ? res.send('could not add comment') : res.json(book);
-				});
-			});
-		})
-
-		.delete((req, res) => {
-			const bookid = req.params.id;
-			if (!bookid) return res.send('no book exists');
-
-			Book.deleteOne({ _id: bookid }, (err) => {
-				return err ? res.send('no book exists') : res.send('delete successful');
+			book.save((err) => {
+				return err ? res.send('could not add comment') : res.json(book);
 			});
 		});
+	})
+
+	.delete((req, res) => {
+		const bookid = req.params.id;
+		if (!bookid) return res.send('no book exists');
+
+		Book.deleteOne({ _id: bookid }, (err) => {
+			return err ? res.send('no book exists') : res.send('delete successful');
+		});
+	});
 ```
 
 ## :cool: Features
@@ -110,7 +110,7 @@
 
 ## :clap: Inspiration
 
-* [freeCodeCamp's curriculum](https://www.freecodecamp.org/learn/) - although it has changed in the years since I compelted this challlenge.
+* [freeCodeCamp's curriculum](https://www.freecodecamp.org/learn/) - although it has changed in the years since I completed this challlenge.
 
 ## :envelope: Contact
 
