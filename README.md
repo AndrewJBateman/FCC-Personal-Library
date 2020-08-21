@@ -1,22 +1,23 @@
 # :zap: Nodejs Information Security and Quality Assurance
 
-* Node.js app to ... and store data in a MongoDB database as part of a FreeCodeCamp exercise for Front End Certification.
+* Node.js app to store and access book data as json objects in a MongoDB database
+* Part of a FreeCodeCamp exercise for Front End Certification (since removed from the curriculum).
 
 *** Note: to open web links in a new window use: _ctrl+click on link_**
 
 ## :page_facing_up: Table of contents
 
 * [:zap: Nodejs Information Security and Quality Assurance](#zap-nodejs-information-security-and-quality-assurance)
-  * [:page_facing_up: Table of contents](#page_facing_up-table-of-contents)
-  * [:books: General info](#books-general-info)
-  * [:camera: Screenshots](#camera-screenshots)
-  * [:signal_strength: Technologies](#signal_strength-technologies)
-  * [:floppy_disk: Setup](#floppy_disk-setup)
-  * [:computer: Code Examples](#computer-code-examples)
-  * [:cool: Features](#cool-features)
-  * [:clipboard: Status & To-Do List](#clipboard-status--to-do-list)
-  * [:clap: Inspiration](#clap-inspiration)
-  * [:envelope: Contact](#envelope-contact)
+	* [:page_facing_up: Table of contents](#page_facing_up-table-of-contents)
+	* [:books: General info](#books-general-info)
+	* [:camera: Screenshots](#camera-screenshots)
+	* [:signal_strength: Technologies](#signal_strength-technologies)
+	* [:floppy_disk: Setup](#floppy_disk-setup)
+	* [:computer: Code Examples](#computer-code-examples)
+	* [:cool: Features](#cool-features)
+	* [:clipboard: Status & To-Do List](#clipboard-status--to-do-list)
+	* [:clap: Inspiration](#clap-inspiration)
+	* [:envelope: Contact](#envelope-contact)
 
 ## :books: General info
 
@@ -50,7 +51,8 @@
 
 * Create MongoDB Atlas Cloud database (or local installed MongoDB database) and add user access/database credentials (USER_NAME, USER_PASSWORD, DB_CLUSTER, PORT & DB_NAME) to a new `.env` file. This is used in `server.js`.
 * Add IP address to MongoDB Atlas Network Access whitelist. Or simply whitelist all (IP address 0.0.0.0/0).
-* Run `node server.js` for a dev server. Navigate to `http://localhost:4000/`. The app will automatically reload if you change any of the source files.
+* Run `node server.js` for a dev server. Navigate to `http://localhost:4000/`.
+* The app will automatically reload if you change any of the source files.
 
 ## :computer: Code Examples
 
