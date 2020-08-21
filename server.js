@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
+const noCache = require('nocache')
 const apiRoutes = require('./routes/api.js');
 const fccTestingRoutes = require('./routes/fcctesting.js');
 const runner = require('./test-runner');
@@ -19,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //challenge 1. I will not have anything cached in my client
-app.use(helmet.noCache());
+app.use(noCache())
 //challenge 2. I will see that the site is powered by 'PHP 4.2.0' even though it isn't
 app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
 

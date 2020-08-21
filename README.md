@@ -20,7 +20,7 @@
 
 ## :books: General info
 
-* Original instructions from FCC:
+* This project is no longer part of the Free Code Camp Front End Certification. Original instructions from FCC:
 
 1) ADD YOUR MongoDB connection string to .env without quotes as db
     `example: DB=mongodb://admin:pass@1234.mlab.com:1234/fccpersonallib`
@@ -33,14 +33,16 @@
 
 ## :camera: Screenshots
 
-![Example screenshot](./images/books.png).
-![Example screenshot](./images/postman.png).
+![Example screenshot](./img/books.png).
+![Example screenshot](./img/postman.png).
 
 ## :signal_strength: Technologies
 
 * [Node v12](https://nodejs.org/en/) javaScript runtime built on Chrome's V8 JavaScript engine
+* [Express v4](https://expressjs.com/) Fast, unopinionated, minimalist web framework for Node.js
 * [mongoose v5](https://mongoosejs.com/) object modelling for node.js.
-* [Helmet v3](https://helmetjs.github.io/) Express.js security with HTTP headers.
+* [Helmet v4](https://helmetjs.github.io/) Express.js security with HTTP headers.
+* [nocache v2](https://www.npmjs.com/package/nocache) Middleware to turn off caching (was part of Helmet)
 * [Cors v2](https://www.npmjs.com/package/cors) node.js package for providing Connect/Express middleware that can be used to enable CORS with various options.
 * [jQuery v3](https://jquery.com/) Javascript library
 
@@ -52,10 +54,47 @@
 
 ## :computer: Code Examples
 
-* extract from `server.js` ..
+* extract from `routes/api.js` showing routes to find a book object in the database using its id, post a comment to or delete the entire book json object using its id.
 
 ```javascript
+	app
+		.route('/api/books/:id')
+		.get((req, res) => {
+			const bookid = req.params.id;
 
+			if (!bookid) return res.send('no book exists');
+
+			Book.findById(bookid, (err, book) => {
+				return err || !book ? res.send('no book exists') : res.json(book);
+			});
+		})
+
+		.post((req, res) => {
+			const bookid = req.params.id;
+			const { comment } = req.body;
+
+			Book.findById(bookid, (err, book) => {
+				if (err || !book) return res.send('no book exists');
+
+				if (comment) {
+					book.comments.push(comment);
+					book.commentcount++;
+				}
+
+				book.save((err) => {
+					return err ? res.send('could not add comment') : res.json(book);
+				});
+			});
+		})
+
+		.delete((req, res) => {
+			const bookid = req.params.id;
+			if (!bookid) return res.send('no book exists');
+
+			Book.deleteOne({ _id: bookid }, (err) => {
+				return err ? res.send('no book exists') : res.send('delete successful');
+			});
+		});
 ```
 
 ## :cool: Features
@@ -64,12 +103,12 @@
 
 ## :clipboard: Status & To-Do List
 
-* Status:
-* To-Do: dd
+* Status: Working. Dependencies all up to date.
+* To-Do: nothing
 
 ## :clap: Inspiration
 
-* f
+* [freeCodeCamp's curriculum](https://www.freecodecamp.org/learn/) - although it has changed in the years since I compelted this challlenge.
 
 ## :envelope: Contact
 

@@ -23,7 +23,7 @@ module.exports = function (app) {
 			new Book({ title: title }).save((err, book) => {
 				return err ? res.send('invalid title') : res.json(book);
 			});
-		}) //end of .post
+		})
 
 		.delete((req, res) => {
 			Book.deleteMany({}, (err) => {
@@ -43,7 +43,7 @@ module.exports = function (app) {
 			Book.findById(bookid, (err, book) => {
 				return err || !book ? res.send('no book exists') : res.json(book);
 			});
-		}) //end of .get
+		})
 
 		.post((req, res) => {
 			const bookid = req.params.id;
@@ -61,7 +61,7 @@ module.exports = function (app) {
 					return err ? res.send('could not add comment') : res.json(book);
 				});
 			});
-		}) //end of .post
+		})
 
 		.delete((req, res) => {
 			const bookid = req.params.id;
@@ -70,5 +70,5 @@ module.exports = function (app) {
 			Book.deleteOne({ _id: bookid }, (err) => {
 				return err ? res.send('no book exists') : res.send('delete successful');
 			});
-		}); //end of .delete
-}; //end of function (app)
+		});
+};
